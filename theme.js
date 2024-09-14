@@ -53,8 +53,10 @@ const customTheme = extendTheme({
   },
   breakpoints: {
     base: "0em", // 0px
+    xxxs: '375px',
+    xxs: '425px',
     xs: '30em',// 480px
-    '2xs': '51.25em', //
+    s: '51.25em', //
     sm: "56em", // ~820px. em is a relative unit and is dependant on the font size.
     md: "64em", // ~1070px
     lg: "75em", // ~1190px

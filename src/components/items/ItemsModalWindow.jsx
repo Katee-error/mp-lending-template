@@ -15,7 +15,6 @@ import {
 } from "@chakra-ui/react";
 import StarFill from '../../assets/icons/star-fill.svg'
 import StarOutline from '../../assets/icons/star-outline.svg'
-import StarHalf from '../../assets/icons/star-half.svg'
 
 
 const ItemsModal = ({ item, isOpen, onClose }) => {

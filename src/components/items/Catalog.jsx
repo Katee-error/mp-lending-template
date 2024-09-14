@@ -3,24 +3,17 @@ import {
   Box,
   Container,
   Heading,
-  Text,
   InputGroup,
   InputLeftElement,
   Input,
-  SimpleGrid,
-  Flex,
   Tabs,
   TabList,
   TabPanels,
   Tab,
-  TabPanel, Card, CardBody, Image, Stack, GridItem,
+  TabPanel,
 } from "@chakra-ui/react";
 import { FiSearch } from "react-icons/fi";
-import { FaRubleSign } from "react-icons/fa6";
-import StarFill from "../../assets/icons/star-fill.svg";
-import StarHalf from "../../assets/icons/star-half.svg";
 import items from "../../data/items.js";
-import {motion} from "framer-motion";
 import ItemsList from "./ItemsList.jsx";
 
 const ServicesPage = (item, onOpen) => {
