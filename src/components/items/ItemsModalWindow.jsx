@@ -11,10 +11,11 @@ import {
   Text,
   Image,
   Flex,
-  Box, Heading,
+  Box, Heading, Button, Link,
 } from "@chakra-ui/react";
 import StarFill from '../../assets/icons/star-fill.svg'
 import StarOutline from '../../assets/icons/star-outline.svg'
+import {NavLink} from "react-router-dom";
 
 
 const ItemsModal = ({ item, isOpen, onClose }) => {
@@ -95,7 +96,13 @@ const ItemsModal = ({ item, isOpen, onClose }) => {
                 {formatTextWithLineBreaks(item.description)}
               </Text>
             </ModalBody>
-            <ModalFooter></ModalFooter>
+            <ModalFooter>
+              <NavLink to="/urr">
+              <Button h={'36px'} bg={'#a161ff'} _hover={{bg: '#9F30FF'}}>
+                <Text fontSize={'14px'} color={'#fff'}>Item Page</Text>
+              </Button>
+              </NavLink>
+            </ModalFooter>
           </Box>
         </Flex>
       </ModalContent>

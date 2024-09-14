@@ -15,14 +15,17 @@ import StarFill from "../assets/icons/star-fill.svg";
 import StarOutline from "../assets/icons/star-outline.svg";
 import formatTextWithLineBreaks from "../services/split.jsx";
 import items from "../data/items.js";
+import ItemsCard from "../components/items/ItemsCard.jsx";
 
 
 
 
 const CatalogPage = (item) => {
   return (
+
     <Box>
       <Container maxW="container.xl">
+      {items.map((item, index) => (
               <Flex
                   gap={{ base: "20px", md: "40px" }}
                   alignItems={"center"}
@@ -94,6 +97,7 @@ const CatalogPage = (item) => {
                   </Box>
               </Flex>
 
+          ))}
       </Container>
     </Box>
   );
