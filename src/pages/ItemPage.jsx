@@ -19,45 +19,10 @@ const CatalogPage = (item) => {
                     alignItems={"start"}
                     flexDirection={{base: "column", md: "row"}}
                 >
-                    <div className="cards">
-                        <div className="card">
-                            <div className="thumbs">
-
-                                <div className="place" src='../'></div>
-                                <div className="thumb"></div>
-                                <div className="place"></div>
-                                <div className="thumb"></div>
-                                <div className="place"></div>
-                                <div className="thumb"></div>
-
-
-                                {/*    <Image*/}
-                            {/*        className={'place'}*/}
-                            {/*        // src={item.img}*/}
-                            {/*        src={ItemImg}*/}
-                            {/*        w={"auto"}*/}
-                            {/*        h={"600px"}*/}
-                            {/*        objectFit={"contain"}*/}
-                            {/*    />*/}
-                            {/*    <Image className={'thumb'}*/}
-                            {/*        // src={item.img}*/}
-                            {/*        src={ItemImg}*/}
-                            {/*        w={"auto"}*/}
-                            {/*        h={"600px"}*/}
-                            {/*        objectFit={"contain"}*/}
-                            {/*    />*/}
-                            {/*    <Image className={'place'}*/}
-                            {/*        // src={item.img}*/}
-                            {/*        src={ItemImg}*/}
-                            {/*        w={"auto"}*/}
-                            {/*        h={"600px"}*/}
-                            {/*        objectFit={"contain"}*/}
-                            {/*    />*/}
-
-                            </div>
-                        </div>
-
-                    </div>
+                    <Image src={ItemImg} w={"auto"}
+                           h={"600px"}
+                           objectFit={"contain"}
+                    />
                     <Flex flexDirection={'column'}>
                         <Text fontSize={{base: "40px", md: "26px"}} fontWeight={'700'}
                               color={'#000f41'}>
