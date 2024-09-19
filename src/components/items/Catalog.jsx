@@ -123,7 +123,7 @@ const ServicesPage = (item, onOpen) => {
                   <TabPanels >
                     {categories.map((category, index) => (
                       <TabPanel key={index}>
-                        <ItemsList items={filteredServices}/>
+                        <ProductList data={filteredServices} />
                       </TabPanel>
                     ))}
                   </TabPanels>
