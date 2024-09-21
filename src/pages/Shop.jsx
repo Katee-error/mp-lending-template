@@ -1,105 +1,122 @@
 import React, { useState } from "react";
-
 import {
+  Tabs,
+  TabList,
+  Tab,
   Box,
-  Flex,
-  Select,
-  Stack,
-  FormControl,
   Container,
-  FormLabel,
   Input,
   InputGroup,
   InputLeftElement,
   Heading,
   SimpleGrid,
 } from "@chakra-ui/react";
-import { FiFilter, FiSearch } from "react-icons/fi";
+import { FiSearch } from "react-icons/fi";
 import items from "../data/items";
 import ProductList from "../UI/ProductList";
 
 const Catalog = () => {
-  const [productsData, setProductsData] = useState(items);
-  // фильтрация
-  const handleFilter = (e) => {
-    const filterValue = e.target.value;
-    if (filterValue === "Рубашки") {
-      const filteredProducts = items.filter(
-        (item) => item.category === "Рубашки"
-      );
+  const [searchTerm, setSearchTerm] = useState("");
+  const [selectedCategory, setSelectedCategory] = useState("Все товары");
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [activeIndex, setActiveIndex] = useState(0);
 
-      setProductsData(filteredProducts);
+  // Фильтрация услуг по названию
+  const searchedServices = items.filter((item) =>
+    item.name.toLowerCase().includes(searchTerm.toLowerCase())
+  );
+
+  // Фильтрация услуг по категории и результатам поиска
+  const filteredServices =
+    selectedCategory === "Все товары"
+      ? searchedServices
+      : searchedServices.filter((item) => item.category === selectedCategory);
+
+  // Получаем уникальные категории из данных
+  const categories = [
+    "Все товары",
+    ...new Set(items.map((item) => item.category)),
+  ];
+
+  const handleTabClick = (index) => {
+    setCurrentIndex(index);
+    const selectedCategory = categories[index];
+
+    // Если выбрана категория "Все услуги", сбрасываем фильтры
+    if (selectedCategory === "Все товары") {
+      setSearchTerm(""); // Сбросить поисковый запрос
     }
-    if (filterValue === "Футболки") {
-      const filteredProducts = items.filter(
-        (item) => item.category === "Футболки"
-      );
-
-      setProductsData(filteredProducts);
-    }
-    if (filterValue === "Штанишки") {
-      const filteredProducts = items.filter(
-        (item) => item.category === "Штанишки"
-      );
-
-      setProductsData(filteredProducts);
-    }
-  }; // фильтрация по категориям
-
-  const handleSearch = (e) => {
-    const searchTeam = e.target.value;
-
-    const searchedProducts = items.filter((item) =>
-      item.name.toLowerCase().includes(searchTeam.toLowerCase())
-    );
-
-    setProductsData(searchedProducts);
-  }; // фильтрация по работе search input
+    setActiveIndex(index);
+    setSelectedCategory(selectedCategory);
+  };
 
   return (
-    <>
-      <Box py={"40px"}>
-        <Container maxW={"container.lg"}>
-          <Flex
-            justifyContent={"space-between"}
-            gap={{ base: "15px", md: "40px" }}
-            textAlign={"center"}
-            flexDirection={{ base: "column", md: "row" }}
+    <Box py={'60px'}>
+      <Container maxW={"container.xl"}>
+        <InputGroup mb={"40px"}>
+          <InputLeftElement pointerEvents="none" px={"10px"}>
+            <FiSearch size={"20px"} />
+          </InputLeftElement>
+          <Input
+            fontSize={"16px"}
+            bg={"white"}
+            py={"20px"}
+            type="text"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            placeholder="Поиск по услугам"
+            focusBorderColor={"brand.main"}
+          />
+        </InputGroup>
+        <Box className="tabs-container">
+          <Tabs
+            position="relative"
+            variant="unstyled"
+            isLazy
+            index={currentIndex}
+            onChange={(index) => setSelectedCategory(categories[index])}
           >
-            <FormControl>
-              <Select placeholder="Filter By Catrgory" onChange={handleFilter}>
-                <option value="Рубашки">Рубашки</option>
-                <option value="Футболки">Футболки</option>
-                <option value="Штанишки">Штанишки</option>
-                
-              </Select>
-            </FormControl>
-            <InputGroup>
-              <InputLeftElement pointerEvents="none">
-                <FiSearch />
-              </InputLeftElement>
-              <Input
-                type="text"
-                placeholder="Search...."
-                onChange={handleSearch}
-              />
-            </InputGroup>
-          </Flex>
-        </Container>
-      </Box>
-
-      <Box py={"60px"}>
-        <Container maxW={"container.xl"}>
-          <SimpleGrid minChildWidth="300px">
-            {productsData.length === 0 ? (
-              <Heading>No products are found! </Heading>
+            <Box className="tabs-wrapper" borderBottom={"1px solid #E2E8F0"}>
+              <TabList className="scrolling-tabs" position="relative">
+                {categories.map((category, index) => (
+                  <Tab
+                    key={index}
+                    fontSize={"18px"}
+                    fontWeight={600}
+                    color={"gray.500"}
+                    mr={"20px"}
+                    position="relative"
+                    onClick={() => handleTabClick(index)}
+                  >
+                    {category}
+                    {activeIndex === index && (
+                      <Box
+                        position="absolute"
+                        bottom={0}
+                        left={0}
+                        width="100%"
+                        height="2px"
+                        bg="brand.main"
+                        transition="all 0.3s ease"
+                      />
+                    )}
+                  </Tab>
+                ))}
+              </TabList>
+            </Box>
+            {filteredServices.length === 0 ? (
+              <Heading py="60px">Товары не найдены</Heading>
             ) : (
-              <ProductList data={productsData} />
+              <Box py={"60px"}>
+                <SimpleGrid minChildWidth="300px">
+                  <ProductList data={filteredServices} />
+                </SimpleGrid>
+              </Box>
             )}
-          </SimpleGrid>
-        </Container>
-      </Box>
-    </>
+          </Tabs>
+        </Box>{" "}
+      </Container>
+    </Box>
   );
 };
 
