@@ -25,7 +25,7 @@ const Navbar = () => {
         as={"nav"}
         color={"#0b0f0e"}
         gap={"40px"}
-        fontWeight={400}
+        fontWeight={500}
         fontSize={"14px"}
         alignItems={"center"}
         justifyContent={"center"}
@@ -34,17 +34,17 @@ const Navbar = () => {
         minH={'50px'}
       >
         <NavLink to="/home">
-          <Link _hover={{ textDecoration: "underline" }}>
+          <Link _hover={{color: '#c98b73'}}>
             Главная
           </Link>
         </NavLink>
         <NavLink to="/catalog" border={"none"}>
-          <Link _hover={{ textDecoration: "underline" }}>
+          <Link _hover={{color: '#c98b73'}}>
             Каталог
           </Link>
         </NavLink>
         <NavLink to="/aboutUs" border={"none"}>
-          <Link _hover={{ textDecoration: "underline" }}>
+          <Link _hover={{color: '#c98b73'}}>
             О нас
           </Link>
         </NavLink>

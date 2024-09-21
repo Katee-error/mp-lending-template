@@ -69,6 +69,11 @@ const HomePage = () => {
           </Flex>
         </Container>
       </Box>
+      {/* <ItemsList
+        items={filter(items)}
+        headingText={"Бестселлеры"}
+        viewAllText={"Посмотреть всё"}
+      /> */}
       <HeroSliderReviews />
     </Box>
   );
