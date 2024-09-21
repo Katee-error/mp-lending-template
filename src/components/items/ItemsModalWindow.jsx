@@ -11,15 +11,17 @@ import {
   Text,
   Image,
   Flex,
-  Box, Heading, Button, Link,
+  Box,
+  Heading,
+  Button,
+  Link,
 } from "@chakra-ui/react";
-import StarFill from '../../assets/icons/star-fill.svg'
-import StarOutline from '../../assets/icons/star-outline.svg'
-import {NavLink} from "react-router-dom";
-
+import StarFill from "../../assets/icons/star-fill.svg";
+import StarOutline from "../../assets/icons/star-outline.svg";
+import { NavLink } from "react-router-dom";
 
 const ItemsModal = ({ item, isOpen, onClose }) => {
-  if (!item) return null; // Возвращаем null, если doctor не определен
+  if (!item) return null; 
 
   return (
     <Modal isOpen={isOpen} onClose={onClose}>
@@ -30,12 +32,7 @@ const ItemsModal = ({ item, isOpen, onClose }) => {
           alignItems={"center"}
           flexDirection={{ base: "column", md: "row" }}
         >
-          <Image
-            src={item.img}
-            w={"auto"}
-            h={"600px"}
-            objectFit={"contain"}
-          />
+          <Image src={item.img} w={"auto"} h={"600px"} objectFit={"contain"} />
           <Box>
             <Flex
               justifyContent={"space-between"}
@@ -44,24 +41,34 @@ const ItemsModal = ({ item, isOpen, onClose }) => {
               px={"0px"}
               gap={"20px"}
             >
-              <Text fontSize={{ base: "40px", md: "26px" }} ml={'20px'} fontWeight={'700'} maxW={'150px'} color={'#000f41'}>
+              <Text
+                fontSize={{ base: "40px", md: "26px" }}
+                ml={"20px"}
+                fontWeight={"700"}
+                maxW={"150px"}
+                color={"#000f41"}
+              >
                 {item.name}
               </Text>
-              <Flex flexDirection={'column'} justifyContent={'space-between'} h={'70px'}>
-                <Text fontSize={'24.5px'} fontWeight={'700'}>
+              <Flex
+                flexDirection={"column"}
+                justifyContent={"space-between"}
+                h={"70px"}
+              >
+                <Text fontSize={"24.5px"} fontWeight={"700"}>
                   {item.price} &#8381;
                 </Text>
-                <Flex >
-                  <Image src={StarFill} h={'16px'}/>
-                  <Image src={StarFill} h={'16px'}/>
-                  <Image src={StarFill} h={'16px'}/>
-                  <Image src={StarFill} h={'16px'}/>
-                  <Image src={StarOutline} h={'16px'}/>
+                <Flex>
+                  <Image src={StarFill} h={"16px"} />
+                  <Image src={StarFill} h={"16px"} />
+                  <Image src={StarFill} h={"16px"} />
+                  <Image src={StarFill} h={"16px"} />
+                  <Image src={StarOutline} h={"16px"} />
                 </Flex>
               </Flex>
             </Flex>
-            <ModalCloseButton />
-            <ModalBody mt={'40px'}>
+            <ModalCloseButton  _hover={{bg: 'transparent'}} _focusVisible={{colorScheme: 'transparent !important'}}/>
+            <ModalBody mt={"40px"}>
               <Text fontSize={"16px"} mb={"20px"}>
                 <Box
                   as="span"
@@ -96,11 +103,18 @@ const ItemsModal = ({ item, isOpen, onClose }) => {
                 {formatTextWithLineBreaks(item.description)}
               </Text>
             </ModalBody>
-            <ModalFooter>
-              <NavLink to="/urr">
-              <Button h={'36px'} bg={'#a161ff'} _hover={{bg: '#9F30FF'}}>
-                <Text fontSize={'14px'} color={'#fff'}>Item Page</Text>
-              </Button>
+            <ModalFooter justifyContent={"flex-start"}>
+              <NavLink to={`/catalog/${item.url}`}>
+                <Button
+                  h={"36px"}
+                  p={"20px 40px"}
+                  bg={"#a161ff"}
+                  _hover={{ bg: "#9F30FF" }}
+                >
+                  <Text fontSize={"14px"} color={"#fff"}>
+                    Item Page
+                  </Text>
+                </Button>
               </NavLink>
             </ModalFooter>
           </Box>
